@@ -1,4 +1,4 @@
-defineModule({name:'model', category:'river', description:'Model constructors', requires:['riverModules/model/ModelBase','riverModules/model/Property']}, function(that, ModelBase, Property) {
+defineModule({name:'model', category:'river', description:'Model constructors', requires:['modules/model/ModelBase','modules/model/Property']}, function(that, ModelBase, Property) {
 
     that.ModelBase = ModelBase;
     that.Property = Property;
