@@ -1,7 +1,7 @@
 define(function () {
     return function Property(config) {
         var that = {};
-
+        var module = require('modelModule');
         var owner, value, defaultValue;
         var newValue = '';
         var name = config.name;
@@ -14,9 +14,7 @@ define(function () {
             that.setValue = function (v) {
                 if (value !== v) {
                     value = v;
-                    require(['modelModule'], function (model) {
-                        model.propertyValueUpdated(that);
-                    });
+                    module.propertyValueUpdated(that);
                 }
             };
 
@@ -52,9 +50,7 @@ define(function () {
 
             that.setNewValue = function (v) {
                 newValue = v;
-                require(['modelModule'], function (model) {
-                    model.propertyNewValueUpdated(that);
-                });
+                module.propertyNewValueUpdated(that);
             };
 
             that.getNewValue = function () {
@@ -63,6 +59,9 @@ define(function () {
 
             that.setDefaultValue = function (v) {
                 defaultValue = v;
+                if(value === undefined) {
+                    module.propertyValueUpdated(that);
+                }
             };
 
             that.getDefaultValue = function () {
