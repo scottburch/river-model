@@ -1,5 +1,5 @@
 define(function () {
-    return function Property(config) {
+    var Property = function (config) {
         var that = {};
         var module = require('modelModule');
         var owner, value, defaultValue;
@@ -18,7 +18,7 @@ define(function () {
                 }
             };
 
-            that.getPath = function() {
+            that.getPath = function () {
                 return owner.getPath() + ':' + name;
             };
 
@@ -32,8 +32,8 @@ define(function () {
                 config.defaultValue !== undefined && (defaultValue = config.defaultValue);
             };
 
-            that.instanceOf = function (constructor) {
-                return constructor === Property;
+            that.instanceOf = function (ctor) {
+                return ctor === Property;
             };
 
             that.getName = function () {
@@ -59,7 +59,7 @@ define(function () {
 
             that.setDefaultValue = function (v) {
                 defaultValue = v;
-                if(value === undefined) {
+                if (value === undefined) {
                     module.propertyValueUpdated(that);
                 }
             };
@@ -73,4 +73,5 @@ define(function () {
             };
         }
     }
+    return Property;
 });
