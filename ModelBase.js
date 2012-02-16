@@ -148,12 +148,9 @@ define(function () {
 
         function triggerEvent(ev) {
             var args = Array.prototype.slice.call(arguments, 1);
-            require(['modelModule'], function (model) {
-                model[ev].apply(model, args);
-            });
+            var model = require('modelModule');
+            model[ev].apply(model, args);
         }
-
     }
-
 
 });
